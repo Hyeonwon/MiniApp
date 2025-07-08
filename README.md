@@ -1,7 +1,7 @@
-# MiniTrack React Native Expo Android 연습 프로젝트
+# MiniTrack
 
 ## 프로젝트 소개
-React Native + Expo로 간단한 회원가입 → 등록 → 메인 → 지도 페이지 앱을  
+React Native + Expo로 간단한 로그인 → 회원가입 → 등록 → 메인 → 지도 페이지 앱을  
 Android 에뮬레이터에서 실행하며 3일간 연습하는 프로젝트입니다.
 
 ## 환경 준비
