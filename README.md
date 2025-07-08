@@ -6,7 +6,7 @@ Android 에뮬레이터에서 실행하며 3일간 연습하는 프로젝트입�
 
 ## 환경 준비
 - Node.js 설치 (v16 이상 권장)  
-- Expo CLI 설치: `npm install -g expo-cli`  
+- Expo CLI 설치: `npm install -g eas-cli`  
 - Android Studio 설치 및 Android 에뮬레이터(AVD) 생성
 
 ## 실행 방법
