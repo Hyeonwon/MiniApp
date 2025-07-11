@@ -16,6 +16,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.hyeongwon.MiniTrack", 
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -25,10 +26,22 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "scheme": "minitrack", 
     "extra": {
       "eas": {
         "projectId": "30763a43-8ddf-430e-8167-a9164f6c72ca"
       }
-    }
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 34,
+            "targetSdkVersion": 34
+          }
+        }
+      ]
+    ]
   }
 }

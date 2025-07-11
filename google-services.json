@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "65033654123",
+    "project_id": "minitrack-fb471",
+    "storage_bucket": "minitrack-fb471.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:65033654123:android:13fc5c26f3b83419b6062e",
+        "android_client_info": {
+          "package_name": "com.hyeongwon.MiniTrack"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtvz7kSbKeFl1FZ_rbfCD6Ntp2RaaZxbI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

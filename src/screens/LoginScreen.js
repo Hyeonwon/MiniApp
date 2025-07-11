@@ -1,18 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  Pressable,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import * as Google from 'expo-auth-session/providers/google';
+import * as WebBrowser from 'expo-web-browser';
+import { signInWithCredential, GoogleAuthProvider } from 'firebase/auth';
+import { auth } from '../../firebaseConfig';
+import * as AuthSession from 'expo-auth-session';
+
+WebBrowser.maybeCompleteAuthSession();
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
+
+  const redirectUri = AuthSession.makeRedirectUri({
+    useProxy: true, 
+  });
+
+  const [request, response, promptAsync] = Google.useAuthRequest({
+    expoClientId: '65033654123-34u4en8t1h4mgitf0dq0o04vhdcgh6lf.apps.googleusercontent.com',
+    androidClientId: '65033654123-29lllfgehge9j98enaafoemmophjq89f.apps.googleusercontent.com',
+    useProxy: true, // ✅ 필수
+  });
+
+  useEffect(() => {
+    if (response?.type === 'success') {
+      const { id_token } = response.params;
+
+      if (id_token) {
+        const credential = GoogleAuthProvider.credential(id_token);
+        signInWithCredential(auth, credential)
+          .then(() => {
+            alert('구글 로그인 성공!');
+            navigation.replace('Home');
+          })
+          .catch((error) => {
+            console.log('로그인 실패:', error);
+            alert('로그인 실패: ' + error.message);
+          });
+      }
+    }
+  }, [response]);
+
 
   return (
     <View style={styles.container}>
@@ -42,15 +78,16 @@ export default function LoginScreen() {
         <Text style={styles.loginButtonText}>로그인</Text>
       </TouchableOpacity>
 
-
       <View style={styles.dividerContainer}>
         <View style={styles.line} />
         <Text style={styles.or}>또는</Text>
         <View style={styles.line} />
       </View>
 
-      {/* 소셜 로그인 버튼 */}
-      <TouchableOpacity style={styles.socialButton}>
+      <TouchableOpacity
+        style={styles.socialButton}
+        onPress={() => promptAsync()}
+      >
         <Text style={styles.socialText}>
           <Text style={{ fontWeight: 'bold' }}>Gmail</Text> 계정으로 계속하기
         </Text>
@@ -68,7 +105,6 @@ export default function LoginScreen() {
         </Text>
       </TouchableOpacity>
 
-      {/* 하단 가입하기 */}
       <Text style={styles.bottomText}>
         계정이 없으신가요?{' '}
         <Text
@@ -81,6 +117,7 @@ export default function LoginScreen() {
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
