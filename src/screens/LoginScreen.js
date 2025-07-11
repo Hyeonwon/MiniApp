@@ -35,9 +35,13 @@ export default function LoginScreen() {
         secureTextEntry
       />
 
-      <TouchableOpacity style={styles.loginButton}>
+      <TouchableOpacity
+        style={styles.loginButton}
+        onPress={() => navigation.replace('Home')}
+      >
         <Text style={styles.loginButtonText}>로그인</Text>
       </TouchableOpacity>
+
 
       <View style={styles.dividerContainer}>
         <View style={styles.line} />
