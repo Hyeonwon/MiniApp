@@ -20,14 +20,12 @@ export default function LoginScreen() {
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
 
-  const redirectUri = AuthSession.makeRedirectUri({
-    useProxy: true, 
-  });
+  const redirectUri = AuthSession.makeRedirectUri({ useProxy: true });
 
   const [request, response, promptAsync] = Google.useAuthRequest({
     expoClientId: '65033654123-34u4en8t1h4mgitf0dq0o04vhdcgh6lf.apps.googleusercontent.com',
-    androidClientId: '65033654123-29lllfgehge9j98enaafoemmophjq89f.apps.googleusercontent.com',
-    useProxy: true, // ✅ 필수
+    androidClientId: '65033654123-gdkak2cv8dkrg5df6skv31v84pbntk3v.apps.googleusercontent.com',
+    redirectUri,
   });
 
   useEffect(() => {
@@ -39,7 +37,7 @@ export default function LoginScreen() {
         signInWithCredential(auth, credential)
           .then(() => {
             alert('구글 로그인 성공!');
-            navigation.replace('Home');
+            navigation.replace('Map');
           })
           .catch((error) => {
             console.log('로그인 실패:', error);
